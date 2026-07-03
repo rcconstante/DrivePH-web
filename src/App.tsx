@@ -213,7 +213,7 @@ function App() {
         className="w-full lg:h-screen lg:overflow-x-auto lg:flex lg:flex-nowrap hide-scrollbar"
       >
         <Slide id="hero">
-          <section className="relative overflow-hidden bg-[#fbfcf8]">
+          <section className="relative overflow-hidden bg-white">
             <div className="relative max-w-7xl mx-auto px-4 sm:px-8 pt-20 pb-12 lg:pb-20">
               <div className="flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-14">
                 <div className="relative flex-shrink-0 w-72 sm:w-80 lg:w-[26rem] order-2 lg:order-1">
@@ -284,7 +284,7 @@ function App() {
         </Slide>
 
         <Slide>
-          <section className="bg-[#fbfcf8] py-24 lg:py-32">
+          <section className="bg-white py-24 lg:py-32">
             <div className="max-w-7xl mx-auto px-4 sm:px-8">
               <div className="text-center mb-12">
                 <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-gray-900">
@@ -388,7 +388,7 @@ function App() {
         </Slide>
 
         <Slide>
-          <section className="bg-[#fbfcf8] py-24 lg:py-0 w-full">
+          <section className="bg-white py-24 lg:py-0 w-full">
             <div className="max-w-6xl mx-auto px-4 sm:px-8">
               <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-12 text-gray-900 text-center lg:text-left">
                 Made for responsible drivers

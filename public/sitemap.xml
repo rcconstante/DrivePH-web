@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://driveph.rcconstante.dev/</loc>
-    <lastmod>2026-07-04</lastmod>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -14,8 +14,8 @@
       <image:title>DrivePH Guide Philippine driving education app</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://driveph.rcconstante.dev/driveph/road-signs-guide.webp</image:loc>
-      <image:title>DrivePH Guide road signs guide</image:title>
+      <image:loc>https://driveph.rcconstante.dev/driveph/asset8.png</image:loc>
+      <image:title>DrivePH Guide road signs quiz screenshot</image:title>
     </image:image>
   </url>
   <url>

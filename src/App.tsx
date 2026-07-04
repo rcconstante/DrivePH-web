@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import {
+  Apple,
   Bookmark,
   ChevronLeft,
   ChevronRight,
@@ -19,6 +20,90 @@ import LicensePage from './pages/License';
 import SupportPage from './pages/Support';
 
 const lastSlideIndex = 4;
+
+type StoreKind = 'appStore' | 'playStore';
+
+const storeLinks = [
+  {
+    href: brand.appStoreUrl,
+    eyebrow: 'Download on the',
+    label: 'App Store',
+    kind: 'appStore',
+  },
+  {
+    href: brand.playStoreUrl,
+    eyebrow: 'GET IT ON',
+    label: 'Google Play',
+    kind: 'playStore',
+  },
+] as const satisfies ReadonlyArray<{
+  href: string;
+  eyebrow: string;
+  label: string;
+  kind: StoreKind;
+}>;
+
+function GooglePlayIcon({ className }: { className: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
+      <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.4l2.583 1.496c.572.331.572.87 0 1.2l-2.583 1.497-2.606-2.597 2.606-2.596zM5.864 3.465L16.8 9.798l-2.302 2.302-8.634-8.635z" />
+    </svg>
+  );
+}
+
+function StoreIcon({ kind, compact }: { kind: StoreKind; compact: boolean }) {
+  if (kind === 'appStore') {
+    return <Apple size={compact ? 20 : 32} className="flex-shrink-0" aria-hidden="true" />;
+  }
+
+  return <GooglePlayIcon className={compact ? 'w-5 h-5 flex-shrink-0' : 'w-8 h-8 flex-shrink-0'} />;
+}
+
+function StoreButtons({ compact = false }: { compact?: boolean }) {
+  return (
+    <div
+      id={compact ? undefined : 'download'}
+      className={
+        compact
+          ? 'flex flex-col sm:flex-row items-stretch sm:items-center gap-4'
+          : 'flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start'
+      }
+    >
+      {storeLinks.map((store) => (
+        <a
+          key={store.kind}
+          href={store.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${store.label} listing for ${brand.name}`}
+          className={
+            compact
+              ? `inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-colors ${
+                  store.kind === 'appStore'
+                    ? 'bg-gray-900 text-white hover:bg-gray-800'
+                    : 'bg-[#2f973b] text-white hover:bg-[#277f32]'
+                }`
+              : `w-full sm:w-auto inline-flex items-center justify-center gap-4 px-8 py-4 rounded-2xl font-semibold text-base transition-colors ${
+                  store.kind === 'appStore'
+                    ? 'bg-gray-900 text-white hover:bg-gray-800'
+                    : 'bg-[#2f973b] text-white hover:bg-[#277f32]'
+                }`
+          }
+        >
+          <StoreIcon kind={store.kind} compact={compact} />
+          {compact ? (
+            store.label
+          ) : (
+            <div className="text-left">
+              <div className="text-xs leading-none opacity-70">{store.eyebrow}</div>
+              <div className="text-base leading-tight font-bold">{store.label}</div>
+            </div>
+          )}
+        </a>
+      ))}
+    </div>
+  );
+}
 
 function useInView(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
@@ -50,7 +135,7 @@ function HorizontalScreenshots() {
   const images = brand.assets.screenshots;
   const [start, setStart] = useState(0);
   const showCount = 4;
-  const maxStart = images.length - showCount;
+  const maxStart = Math.max(0, images.length - showCount);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const goNext = () => setStart((s) => Math.min(s + 1, maxStart));
@@ -63,12 +148,12 @@ function HorizontalScreenshots() {
         className="overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-4"
       >
         <div className="flex gap-1 px-1 min-w-max">
-          {images.map((src, i) => {
+          {images.map((image, i) => {
             const inWindow = i >= start && i < start + showCount;
 
             return (
               <div
-                key={src}
+                key={image.src}
                 className={`snap-center flex-shrink-0 transition-all duration-700 ease-out ${
                   visible && inWindow
                     ? 'opacity-100 translate-y-0 scale-100'
@@ -79,9 +164,11 @@ function HorizontalScreenshots() {
                 style={{ transitionDelay: `${(i - start) * 80}ms` }}
               >
                 <img
-                  src={src}
-                  alt={`${brand.name} mobile visual ${i + 1}`}
-                  className="w-[220px] sm:w-[260px] lg:w-[300px] aspect-[9/16] object-contain"
+                  src={image.src}
+                  alt={image.alt}
+                  width={image.width}
+                  height={image.height}
+                  className="w-[220px] sm:w-[260px] lg:w-[300px] aspect-[853/1844] object-contain"
                   loading="lazy"
                 />
               </div>
@@ -246,34 +333,7 @@ function HomePage() {
                     A focused Philippine driving guide for LTO reviewer quizzes, student permit prep, road signs, traffic rules, real-road scenarios, and vehicle care.
                   </p>
 
-                  <div id="download" className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-                    <a
-                      href={brand.siteUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-gray-900 text-white px-8 py-4 rounded-2xl font-semibold text-base hover:bg-gray-800 transition-colors"
-                    >
-                      <Smartphone size={32} className="flex-shrink-0" />
-                      <div className="text-left">
-                        <div className="text-xs leading-none opacity-70">Open the</div>
-                        <div className="text-base leading-tight font-bold">Official Site</div>
-                      </div>
-                    </a>
-                    <a
-                      href={brand.playStoreUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-4 bg-[#2f973b] text-white px-8 py-4 rounded-2xl font-semibold text-base hover:bg-[#277f32] transition-colors"
-                    >
-                      <svg viewBox="0 0 24 24" className="w-8 h-8 flex-shrink-0" fill="currentColor">
-                        <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.4l2.583 1.496c.572.331.572.87 0 1.2l-2.583 1.497-2.606-2.597 2.606-2.596zM5.864 3.465L16.8 9.798l-2.302 2.302-8.634-8.635z" />
-                      </svg>
-                      <div className="text-left">
-                        <div className="text-xs leading-none opacity-70">GET IT ON</div>
-                        <div className="text-base leading-tight font-bold">Google Play</div>
-                      </div>
-                    </a>
-                  </div>
+                  <StoreButtons />
                 </div>
               </div>
             </div>
@@ -451,28 +511,7 @@ function HomePage() {
               <p className="text-gray-500 text-lg mb-8">
                 Learn the rules, practice the scenarios, and verify official requirements before every real transaction.
               </p>
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-                <a
-                  href={brand.siteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-gray-900 text-white px-5 py-2.5 rounded-lg font-medium text-sm hover:bg-gray-800 transition-colors"
-                >
-                  <Smartphone size={20} />
-                  Official Site
-                </a>
-                <a
-                  href={brand.playStoreUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-[#2f973b] text-white px-5 py-2.5 rounded-lg font-medium text-sm hover:bg-[#277f32] transition-colors"
-                >
-                  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
-                    <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.4l2.583 1.496c.572.331.572.87 0 1.2l-2.583 1.497-2.606-2.597 2.606-2.596zM5.864 3.465L16.8 9.798l-2.302 2.302-8.634-8.635z" />
-                  </svg>
-                  Google Play
-                </a>
-              </div>
+              <StoreButtons compact />
             </div>
 
             <div className="flex flex-col gap-3 text-sm text-gray-400 lg:text-right">

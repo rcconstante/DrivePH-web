@@ -82,7 +82,7 @@ export default function SupportPage() {
         </p>
 
         <div className="space-y-6">
-          <div className="bg-[#fbfcf8] border border-gray-100 rounded-2xl p-6">
+          <div className="bg-white border border-gray-100 rounded-2xl p-6">
             <h2 className="text-xl font-bold mb-2">Email Support</h2>
             <p className="text-gray-500 mb-4">For bug reports, content questions, feature requests, or general support.</p>
             <a
@@ -93,7 +93,7 @@ export default function SupportPage() {
             </a>
           </div>
 
-          <div className="bg-[#fbfcf8] border border-gray-100 rounded-2xl p-6">
+          <div className="bg-white border border-gray-100 rounded-2xl p-6">
             <h2 className="text-xl font-bold mb-2">Frequently Asked Questions</h2>
             <div className="space-y-4 text-gray-600">
               {faqItems.map((item) => (
@@ -108,7 +108,7 @@ export default function SupportPage() {
             </div>
           </div>
 
-          <div className="bg-[#fbfcf8] border border-gray-100 rounded-2xl p-6">
+          <div className="bg-white border border-gray-100 rounded-2xl p-6">
             <h2 className="text-xl font-bold mb-2">Version & Troubleshooting</h2>
             <p className="text-gray-500 mb-2">Current app version: <span className="font-medium text-gray-900">1.0.0</span></p>
             <p className="text-gray-500">

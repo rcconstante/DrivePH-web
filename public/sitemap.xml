@@ -1,33 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://driveph.rcconstante.dev/</loc>
-    <lastmod>2026-07-03</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-07-04</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://driveph.rcconstante.dev/driveph/icon.png</image:loc>
+      <image:title>DrivePH Guide app icon</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://driveph.rcconstante.dev/driveph/home-car.webp</image:loc>
+      <image:title>DrivePH Guide Philippine driving education app</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://driveph.rcconstante.dev/driveph/road-signs-guide.webp</image:loc>
+      <image:title>DrivePH Guide road signs guide</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://driveph.rcconstante.dev/privacy-policy</loc>
-    <lastmod>2026-07-03</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://driveph.rcconstante.dev/terms</loc>
-    <lastmod>2026-07-03</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://driveph.rcconstante.dev/license</loc>
-    <lastmod>2026-07-03</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://driveph.rcconstante.dev/support</loc>
-    <lastmod>2026-07-03</lastmod>
+    <lastmod>2026-07-04</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
+    <priority>0.6</priority>
   </url>
 </urlset>

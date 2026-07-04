@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
 import { ChevronLeft } from 'lucide-react';
-import { brand, getAbsoluteUrl } from '../config/brand';
+import { brand } from '../config/brand';
+import { pageSeo, usePageSeo } from '../config/seo';
 
 const faqItems = [
   {
@@ -25,38 +25,7 @@ const faqItems = [
 ];
 
 export default function SupportPage() {
-  useEffect(() => {
-    document.title = `Support - ${brand.name}`;
-
-    const setMeta = (name: string, content: string, prop = false) => {
-      const attr = prop ? 'property' : 'name';
-      let el = document.querySelector(`meta[${attr}="${name}"]`);
-
-      if (!el) {
-        el = document.createElement('meta');
-        el.setAttribute(attr, name);
-        document.head.appendChild(el);
-      }
-
-      el.setAttribute('content', content);
-    };
-
-    const description = `Get help with ${brand.name} lessons, quizzes, scenarios, and support questions.`;
-    const canonical = document.querySelector('link[rel="canonical"]');
-
-    setMeta('description', description);
-    setMeta('og:title', `Support - ${brand.name}`, true);
-    setMeta('og:description', description, true);
-    setMeta('og:url', getAbsoluteUrl(brand.routes.support), true);
-    setMeta('twitter:title', `Support - ${brand.name}`);
-    setMeta('twitter:description', description);
-    if (canonical) canonical.setAttribute('href', getAbsoluteUrl(brand.routes.support));
-
-    return () => {
-      document.title = brand.title;
-      if (canonical) canonical.setAttribute('href', getAbsoluteUrl());
-    };
-  }, []);
+  usePageSeo(pageSeo.support);
 
   return (
     <div className="min-h-screen bg-white text-gray-900">
@@ -110,7 +79,7 @@ export default function SupportPage() {
 
           <div className="bg-white border border-gray-100 rounded-2xl p-6">
             <h2 className="text-xl font-bold mb-2">Version & Troubleshooting</h2>
-            <p className="text-gray-500 mb-2">Current app version: <span className="font-medium text-gray-900">1.0.0</span></p>
+            <p className="text-gray-500 mb-2">Current app version: <span className="font-medium text-gray-900">{brand.version}</span></p>
             <p className="text-gray-500">
               If the app crashes or behaves unexpectedly, force-close and reopen it. If the issue persists,
               email us with your device model, OS version, app version, and the screen where the issue happened.

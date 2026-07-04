@@ -1,59 +1,205 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-PH">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/driveph/icon.png" />
+    <link rel="apple-touch-icon" href="/driveph/icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="content-language" content="en-PH" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-    <title>DrivePH Guide - Philippine Driving Guide, LTO Reviewer & Road Safety App</title>
-    <meta name="description" content="DrivePH Guide helps Filipino drivers prepare for student permits, driver licenses, LTO reviewer questions, traffic signs, road rules, driving scenarios, and vehicle care." />
-    <meta name="keywords" content="DrivePH Guide, DrivePH, Philippine driving guide, LTO reviewer, LTO exam reviewer Philippines, student permit Philippines, driver license Philippines, traffic signs Philippines, road safety app" />
+    <title>DrivePH Guide | LTO Reviewer, Road Signs & Philippine Driving Guide</title>
+    <meta name="description" content="DrivePH Guide is an independent Philippine driving app for LTO reviewer quizzes, student permit prep, road signs, traffic rules, scenarios, and vehicle care." />
     <meta name="author" content="DrivePH Guide" />
+    <meta name="publisher" content="DrivePH Guide" />
+    <meta name="application-name" content="DrivePH Guide" />
+    <meta name="apple-mobile-web-app-title" content="DrivePH Guide" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#2f973b" />
+    <meta name="geo.region" content="PH" />
+    <meta name="geo.placename" content="Philippines" />
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="googlebot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <meta name="bingbot" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
     <link rel="canonical" href="https://driveph.rcconstante.dev/" />
+    <link rel="alternate" href="https://driveph.rcconstante.dev/" hreflang="en-PH" />
+    <link rel="alternate" href="https://driveph.rcconstante.dev/" hreflang="x-default" />
+    <link rel="preload" as="image" href="/driveph/home-car.webp" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://driveph.rcconstante.dev/" />
-    <meta property="og:title" content="DrivePH Guide - Philippine Driving Guide, LTO Reviewer & Road Safety App" />
-    <meta property="og:description" content="Study Philippine driving basics with lessons, LTO-style quizzes, road scenarios, signs, traffic rules, and vehicle care guidance." />
+    <meta property="og:title" content="DrivePH Guide | LTO Reviewer, Road Signs & Philippine Driving Guide" />
+    <meta property="og:description" content="Independent Philippine driving education app for LTO reviewer quizzes, student permit prep, road signs, traffic rules, scenarios, and vehicle care." />
     <meta property="og:image" content="https://driveph.rcconstante.dev/driveph/icon.png" />
     <meta property="og:image:width" content="1024" />
     <meta property="og:image:height" content="1024" />
+    <meta property="og:image:alt" content="DrivePH Guide app icon" />
     <meta property="og:site_name" content="DrivePH Guide" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="en_PH" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="DrivePH Guide - Philippine Driving Guide, LTO Reviewer & Road Safety App" />
-    <meta name="twitter:description" content="A Philippine driving guide for student permits, driver licenses, LTO reviewer questions, traffic signs, road rules, quizzes, and scenarios." />
+    <meta name="twitter:title" content="DrivePH Guide | LTO Reviewer, Road Signs & Philippine Driving Guide" />
+    <meta name="twitter:description" content="Study Philippine driving basics with LTO-style quizzes, road signs, traffic rules, scenarios, and vehicle care lessons." />
     <meta name="twitter:image" content="https://driveph.rcconstante.dev/driveph/icon.png" />
+    <meta name="twitter:image:alt" content="DrivePH Guide app icon" />
 
-    <meta name="application-name" content="DrivePH Guide" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="theme-color" content="#2f973b" />
-    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+    <style>
+      .seo-fallback {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 48px 20px 56px;
+        color: #111827;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.65;
+      }
+
+      .seo-fallback img {
+        width: 72px;
+        height: 72px;
+        border-radius: 20px;
+      }
+
+      .seo-fallback h1 {
+        margin: 24px 0 16px;
+        font-size: clamp(2.25rem, 8vw, 4.75rem);
+        line-height: 1.05;
+      }
+
+      .seo-fallback h2 {
+        margin: 40px 0 12px;
+        font-size: 1.5rem;
+      }
+
+      .seo-fallback a {
+        color: #2f973b;
+        font-weight: 700;
+      }
+
+      .seo-fallback ul {
+        padding-left: 1.25rem;
+      }
+    </style>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "DrivePH Guide",
-        "applicationCategory": "EducationalApplication",
-        "operatingSystem": "Android, iOS, Web",
-        "url": "https://driveph.rcconstante.dev/",
-        "image": "https://driveph.rcconstante.dev/driveph/icon.png",
-        "description": "DrivePH Guide helps Filipino drivers study student permits, driver licenses, LTO reviewer questions, traffic signs, road rules, driving scenarios, and vehicle care.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "PHP"
-        },
-        "areaServed": {
-          "@type": "Country",
-          "name": "Philippines"
-        }
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://driveph.rcconstante.dev/#organization",
+            "name": "DrivePH Guide",
+            "url": "https://driveph.rcconstante.dev/",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://driveph.rcconstante.dev/driveph/icon.png",
+              "width": 1024,
+              "height": 1024
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "Philippines"
+            },
+            "sameAs": [
+              "https://play.google.com/store/apps/details?id=com.djacobsen91.DrivePHGuide"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://driveph.rcconstante.dev/#website",
+            "name": "DrivePH Guide",
+            "url": "https://driveph.rcconstante.dev/",
+            "description": "Independent Philippine driving education app for LTO reviewer quizzes, student permit prep, road signs, traffic rules, scenarios, and vehicle care.",
+            "publisher": {
+              "@id": "https://driveph.rcconstante.dev/#organization"
+            },
+            "inLanguage": "en-PH"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://driveph.rcconstante.dev/#software",
+            "name": "DrivePH Guide",
+            "alternateName": "DrivePH",
+            "applicationCategory": "EducationalApplication",
+            "applicationSubCategory": "Driving education",
+            "operatingSystem": "Android, iOS, Web",
+            "url": "https://driveph.rcconstante.dev/",
+            "downloadUrl": "https://play.google.com/store/apps/details?id=com.djacobsen91.DrivePHGuide",
+            "image": "https://driveph.rcconstante.dev/driveph/icon.png",
+            "description": "DrivePH Guide helps Filipino drivers study student permits, driver licenses, LTO reviewer questions, traffic signs, road rules, driving scenarios, and vehicle care.",
+            "softwareVersion": "1.0.0",
+            "isAccessibleForFree": true,
+            "inLanguage": "en-PH",
+            "featureList": [
+              "LTO-style reviewer quizzes",
+              "Student permit preparation",
+              "Philippine road signs and traffic rules",
+              "Driving scenarios and road safety lessons",
+              "Vehicle care and maintenance guidance"
+            ],
+            "author": {
+              "@id": "https://driveph.rcconstante.dev/#organization"
+            },
+            "publisher": {
+              "@id": "https://driveph.rcconstante.dev/#organization"
+            },
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "PHP"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "Philippines"
+            }
+          }
+        ]
       }
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <main class="seo-fallback">
+        <img src="/driveph/icon.png" alt="DrivePH Guide app icon" width="72" height="72" />
+        <h1>DrivePH Guide</h1>
+        <p>
+          DrivePH Guide is an independent Philippine driving education app for student permit preparation, driver license review, LTO-style reviewer quizzes, road signs, traffic rules, driving scenarios, and vehicle care.
+        </p>
+        <p>
+          The app is built for Filipino drivers who want a focused, mobile-first guide before studying official LTO requirements, practicing road safety, or reviewing common driving topics.
+        </p>
+
+        <nav aria-label="DrivePH Guide pages">
+          <a href="/">Home</a> |
+          <a href="/support">Support</a> |
+          <a href="/privacy-policy">Privacy Policy</a> |
+          <a href="/terms">Terms of Service</a> |
+          <a href="/license">Open Source Licenses</a>
+        </nav>
+
+        <section aria-labelledby="driveph-topics">
+          <h2 id="driveph-topics">What DrivePH Guide Covers</h2>
+          <ul>
+            <li>Student permit basics and Philippine driver license topics.</li>
+            <li>LTO reviewer-style quizzes, final exam practice, and topic checkpoints.</li>
+            <li>Road signs, traffic signals, pavement markings, right-of-way, parking, and crash duties.</li>
+            <li>Real-road driving scenarios for hazards, intersections, parking, rain, traffic flow, and defensive driving.</li>
+            <li>Vehicle care lessons covering basic checks, maintenance, safety, and owner responsibilities.</li>
+          </ul>
+        </section>
+
+        <section aria-labelledby="driveph-notice">
+          <h2 id="driveph-notice">Independent Educational Notice</h2>
+          <p>
+            DrivePH Guide is not affiliated with, endorsed by, or sponsored by the Land Transportation Office or any government agency. Always verify current rules, fees, forms, procedures, and requirements with official government sources before acting on them.
+          </p>
+        </section>
+
+        <p>
+          Download or open DrivePH Guide from the
+          <a href="https://play.google.com/store/apps/details?id=com.djacobsen91.DrivePHGuide" rel="noopener noreferrer">Google Play listing</a>.
+        </p>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

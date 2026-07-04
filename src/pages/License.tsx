@@ -1,5 +1,6 @@
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { brand } from '../config/brand';
+import { pageSeo, usePageSeo } from '../config/seo';
 
 const licenses = [
   {
@@ -99,6 +100,8 @@ copies or substantial portions of the Software.`,
 ];
 
 export default function LicensePage() {
+  usePageSeo(pageSeo.license);
+
   return (
     <div className="min-h-screen bg-white text-gray-900">
       <div className="max-w-3xl mx-auto px-6 py-16">

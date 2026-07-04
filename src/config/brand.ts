@@ -1,10 +1,14 @@
 export const brand = {
   name: 'DrivePH Guide',
-  title: 'DrivePH Guide - Philippine Driving Guide, LTO Reviewer & Road Safety App',
+  shortName: 'DrivePH',
+  title: 'DrivePH Guide | LTO Reviewer, Road Signs & Philippine Driving Guide',
+  description:
+    'DrivePH Guide is an independent Philippine driving app for LTO reviewer quizzes, student permit prep, road signs, traffic rules, scenarios, and vehicle care.',
   siteUrl: 'https://driveph.rcconstante.dev',
   displayUrl: 'driveph.rcconstante.dev',
   supportEmail: 'support@driveph.com',
   playStoreUrl: 'https://play.google.com/store/apps/details?id=com.djacobsen91.DrivePHGuide',
+  version: '1.0.0',
   routes: {
     home: '/',
     privacy: '/privacy-policy',

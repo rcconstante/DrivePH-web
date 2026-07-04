@@ -12,10 +12,13 @@ import {
   Tag,
 } from 'lucide-react';
 import { brand } from './config/brand';
+import { pageSeo, usePageSeo } from './config/seo';
 import PrivacyPage from './pages/Privacy';
 import TermsPage from './pages/Terms';
 import LicensePage from './pages/License';
 import SupportPage from './pages/Support';
+
+const lastSlideIndex = 4;
 
 function useInView(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
@@ -131,15 +134,11 @@ function Slide({ children, id }: { children: ReactNode; id?: string }) {
   );
 }
 
-function App() {
+function HomePage() {
+  usePageSeo(pageSeo.home);
+
   const [activeSlide, setActiveSlide] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const path = window.location.pathname;
-
-  if (path === brand.routes.privacy || path === brand.routes.legacyPrivacy) return <PrivacyPage />;
-  if (path === brand.routes.terms) return <TermsPage />;
-  if (path === brand.routes.license) return <LicensePage />;
-  if (path === brand.routes.support) return <SupportPage />;
 
   useEffect(() => {
     const el = containerRef.current;
@@ -148,7 +147,7 @@ function App() {
     const onScroll = () => {
       if (window.innerWidth < 1024) return;
       const idx = Math.round(el.scrollLeft / window.innerWidth);
-      setActiveSlide(Math.max(0, Math.min(idx, 5)));
+      setActiveSlide(Math.max(0, Math.min(idx, lastSlideIndex)));
     };
 
     el.addEventListener('scroll', onScroll, { passive: true });
@@ -198,7 +197,7 @@ function App() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (window.innerWidth < 1024) return;
-      if (e.key === 'ArrowRight') scrollToSlide(Math.min(activeSlide + 1, 5));
+      if (e.key === 'ArrowRight') scrollToSlide(Math.min(activeSlide + 1, lastSlideIndex));
       if (e.key === 'ArrowLeft') scrollToSlide(Math.max(activeSlide - 1, 0));
     };
 
@@ -239,14 +238,12 @@ function App() {
                     Philippines Driving Companion
                   </div>
                   <h1 className="text-5xl sm:text-6xl lg:text-[5.25rem] font-extrabold tracking-tight leading-[1.05] mb-8 text-gray-900">
-                    Learn.
+                    DrivePH
                     <br />
-                    <span className="text-[#2f973b]">Practice.</span>
-                    <br />
-                    Drive Responsibly.
+                    <span className="text-[#2f973b]">Guide.</span>
                   </h1>
                   <p className="text-gray-500 text-xl sm:text-2xl leading-relaxed mb-10 max-w-lg mx-auto lg:mx-0">
-                    Study permits, license types, road signs, traffic rules, real-road scenarios, quizzes, and vehicle care in one focused guide for Filipino drivers.
+                    A focused Philippine driving guide for LTO reviewer quizzes, student permit prep, road signs, traffic rules, real-road scenarios, and vehicle care.
                   </p>
 
                   <div id="download" className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
@@ -498,6 +495,45 @@ function App() {
       </div>
     </div>
   );
+}
+
+function NotFoundPage() {
+  usePageSeo(pageSeo.notFound);
+
+  return (
+    <main className="min-h-screen bg-white text-gray-900 flex items-center">
+      <section className="max-w-xl mx-auto px-6 py-20">
+        <img src={brand.assets.icon} alt={brand.iconAlt} className="w-16 h-16 rounded-2xl mb-8" />
+        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight mb-4">Page not found</h1>
+        <p className="text-gray-500 text-lg leading-relaxed mb-8">
+          This DrivePH Guide page does not exist. Go back to the homepage for the Philippine driving guide, LTO reviewer, road signs, traffic rules, scenarios, and support links.
+        </p>
+        <a
+          href={brand.routes.home}
+          className="inline-flex items-center justify-center bg-[#2f973b] text-white px-5 py-2.5 rounded-lg font-medium text-sm hover:bg-[#277f32] transition-colors"
+        >
+          Go to homepage
+        </a>
+      </section>
+    </main>
+  );
+}
+
+function normalizePath(path: string) {
+  if (path === brand.routes.home) return brand.routes.home;
+  return path.replace(/\/+$/, '');
+}
+
+function App() {
+  const path = normalizePath(window.location.pathname);
+
+  if (path === brand.routes.home) return <HomePage />;
+  if (path === brand.routes.privacy || path === brand.routes.legacyPrivacy) return <PrivacyPage />;
+  if (path === brand.routes.terms) return <TermsPage />;
+  if (path === brand.routes.license) return <LicensePage />;
+  if (path === brand.routes.support) return <SupportPage />;
+
+  return <NotFoundPage />;
 }
 
 export default App;

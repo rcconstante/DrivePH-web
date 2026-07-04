@@ -1,0 +1,19 @@
+{
+  "name": "DrivePH Guide",
+  "short_name": "DrivePH",
+  "description": "Independent Philippine driving education app for LTO reviewer quizzes, student permit prep, road signs, traffic rules, scenarios, and vehicle care.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2f973b",
+  "lang": "en-PH",
+  "icons": [
+    {
+      "src": "/driveph/icon.png",
+      "sizes": "1254x1254",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

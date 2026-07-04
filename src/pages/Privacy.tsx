@@ -1,41 +1,9 @@
-import { useEffect } from 'react';
 import { ChevronLeft } from 'lucide-react';
-import { brand, getAbsoluteUrl } from '../config/brand';
+import { brand } from '../config/brand';
+import { pageSeo, usePageSeo } from '../config/seo';
 
 export default function PrivacyPage() {
-  useEffect(() => {
-    document.title = `Privacy Policy - ${brand.name}`;
-
-    const setMeta = (name: string, content: string, prop = false) => {
-      const attr = prop ? 'property' : 'name';
-      let el = document.querySelector(`meta[${attr}="${name}"]`);
-
-      if (!el) {
-        el = document.createElement('meta');
-        el.setAttribute(attr, name);
-        document.head.appendChild(el);
-      }
-
-      el.setAttribute('content', content);
-    };
-
-    const description =
-      'DrivePH Guide privacy policy for the independent Philippine driving education app.';
-    const canonical = document.querySelector('link[rel="canonical"]');
-
-    setMeta('description', description);
-    setMeta('og:title', `Privacy Policy - ${brand.name}`, true);
-    setMeta('og:description', description, true);
-    setMeta('og:url', getAbsoluteUrl(brand.routes.privacy), true);
-    setMeta('twitter:title', `Privacy Policy - ${brand.name}`);
-    setMeta('twitter:description', description);
-    if (canonical) canonical.setAttribute('href', getAbsoluteUrl(brand.routes.privacy));
-
-    return () => {
-      document.title = brand.title;
-      if (canonical) canonical.setAttribute('href', getAbsoluteUrl());
-    };
-  }, []);
+  usePageSeo(pageSeo.privacy);
 
   return (
     <div className="min-h-screen bg-white text-gray-900">

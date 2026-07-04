@@ -1,1 +1,11 @@
-/*    /index.html   200
+/privacy          /index.html   200
+/privacy/         /index.html   200
+/privacy-policy   /index.html   200
+/privacy-policy/  /index.html   200
+/terms            /index.html   200
+/terms/           /index.html   200
+/license          /index.html   200
+/license/         /index.html   200
+/support          /index.html   200
+/support/         /index.html   200
+/*                /404.html     404

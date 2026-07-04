@@ -11,6 +11,7 @@ import {
   Shield,
   Smartphone,
   Tag,
+  X,
 } from 'lucide-react';
 import { brand } from './config/brand';
 import { pageSeo, usePageSeo } from './config/seo';
@@ -134,12 +135,30 @@ function HorizontalScreenshots() {
   const { ref, visible } = useInView(0.15);
   const images = brand.assets.screenshots;
   const [start, setStart] = useState(0);
+  const [selectedScreenshot, setSelectedScreenshot] = useState<(typeof images)[number] | null>(null);
   const showCount = 4;
   const maxStart = Math.max(0, images.length - showCount);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const goNext = () => setStart((s) => Math.min(s + 1, maxStart));
   const goPrev = () => setStart((s) => Math.max(s - 1, 0));
+
+  useEffect(() => {
+    if (!selectedScreenshot) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setSelectedScreenshot(null);
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [selectedScreenshot]);
 
   return (
     <div ref={ref} className="relative">
@@ -163,14 +182,21 @@ function HorizontalScreenshots() {
                 }`}
                 style={{ transitionDelay: `${(i - start) * 80}ms` }}
               >
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  width={image.width}
-                  height={image.height}
-                  className="w-[220px] sm:w-[260px] lg:w-[300px] aspect-[853/1844] object-contain"
-                  loading="lazy"
-                />
+                <button
+                  type="button"
+                  onClick={() => setSelectedScreenshot(image)}
+                  className="block cursor-zoom-in rounded-[2rem] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#2f973b]/30"
+                  aria-label={`Open ${image.alt} fullscreen`}
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    width={image.width}
+                    height={image.height}
+                    className="w-[220px] sm:w-[260px] lg:w-[300px] aspect-[853/1844] object-contain"
+                    loading="lazy"
+                  />
+                </button>
               </div>
             );
           })}
@@ -178,17 +204,19 @@ function HorizontalScreenshots() {
       </div>
 
       <button
+        type="button"
         onClick={goPrev}
         disabled={start === 0}
-        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 z-10 w-12 h-12 flex items-center justify-center text-gray-500 hover:text-gray-900 hover:scale-105 disabled:opacity-0 disabled:scale-75 transition-all"
+        className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-xl border border-gray-200 bg-white/95 text-gray-600 shadow-lg shadow-gray-900/10 backdrop-blur transition-all hover:-translate-x-0.5 hover:text-gray-900 hover:shadow-xl disabled:pointer-events-none disabled:opacity-40"
         aria-label="Previous screenshots"
       >
         <ChevronLeft size={24} />
       </button>
       <button
+        type="button"
         onClick={goNext}
         disabled={start >= maxStart}
-        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 z-10 w-12 h-12 flex items-center justify-center text-gray-500 hover:text-gray-900 hover:scale-105 disabled:opacity-0 disabled:scale-75 transition-all"
+        className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-xl border border-gray-200 bg-white/95 text-gray-600 shadow-lg shadow-gray-900/10 backdrop-blur transition-all hover:translate-x-0.5 hover:text-gray-900 hover:shadow-xl disabled:pointer-events-none disabled:opacity-40"
         aria-label="Next screenshots"
       >
         <ChevronRight size={24} />
@@ -206,6 +234,33 @@ function HorizontalScreenshots() {
           />
         ))}
       </div>
+
+      {selectedScreenshot ? (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-gray-950/90 p-4 sm:p-8"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Fullscreen screenshot"
+          onClick={() => setSelectedScreenshot(null)}
+        >
+          <button
+            type="button"
+            onClick={() => setSelectedScreenshot(null)}
+            className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 bg-white/10 text-white shadow-lg backdrop-blur transition-colors hover:bg-white/20 focus:outline-none focus-visible:ring-4 focus-visible:ring-white/30"
+            aria-label="Close fullscreen screenshot"
+          >
+            <X size={22} />
+          </button>
+          <img
+            src={selectedScreenshot.src}
+            alt={selectedScreenshot.alt}
+            width={selectedScreenshot.width}
+            height={selectedScreenshot.height}
+            className="max-h-full max-w-full object-contain"
+            onClick={(event) => event.stopPropagation()}
+          />
+        </div>
+      ) : null}
     </div>
   );
 }

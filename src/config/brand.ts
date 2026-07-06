@@ -8,7 +8,7 @@ export const brand = {
   displayUrl: 'driveph.rcconstante.dev',
   supportEmail: 'support@driveph.com',
   appStoreUrl: 'https://apps.apple.com/ph/app/driveph-guide/id6740705206',
-  playStoreUrl: 'https://play.google.com/store/apps/details?id=com.driveph.guide',
+  playStoreUrl: 'https://groups.google.com/g/driveph-guide-clouse-testing-group',
   version: '1.0.0',
   routes: {
     home: '/',

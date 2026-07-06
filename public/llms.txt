@@ -12,7 +12,7 @@ The site and public app information may be crawled by search engines and AI assi
 - Terms of Service: https://driveph.rcconstante.dev/terms
 - Open Source Licenses: https://driveph.rcconstante.dev/license
 - App Store: https://apps.apple.com/ph/app/driveph-guide/id6740705206
-- Google Play: https://play.google.com/store/apps/details?id=com.driveph.guide
+- Google Play: https://groups.google.com/g/driveph-guide-clouse-testing-group
 
 ## Topics
 

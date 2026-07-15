@@ -1,0 +1,12 @@
+# DrivePH Guide
+
+DrivePH Guide is an independent Philippine driving education app for student permit preparation, driver license review, LTO-style reviewer quizzes, road signs, traffic rules, driving scenarios, and vehicle care.
+
+Canonical website: https://driveph.rcconstante.dev/
+Support: https://driveph.rcconstante.dev/support
+Privacy: https://driveph.rcconstante.dev/privacy-policy
+Terms: https://driveph.rcconstante.dev/terms
+App Store: https://apps.apple.com/ph/app/drive-ph-guide/id6787468109
+Google Play: https://groups.google.com/g/driveph-guide-clouse-testing-group
+
+DrivePH Guide is not affiliated with, endorsed by, or sponsored by the Land Transportation Office or any government agency. Verify current rules, fees, forms, procedures, and requirements with official government sources.

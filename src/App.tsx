@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import {
-  Apple,
   Bookmark,
   ChevronLeft,
   ChevronRight,
@@ -46,15 +45,26 @@ const storeLinks = [
 
 function GooglePlayIcon({ className }: { className: string }) {
   return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <path fill="#00c3ff" d="M3.61 1.81 13.8 12 3.61 22.19A1 1 0 0 1 3 21.27V2.73a1 1 0 0 1 .61-.92Z" />
+      <path fill="#ffd500" d="m13.8 12 2.31-2.31-10.25-5.94L13.8 12Z" />
+      <path fill="#ff3a44" d="m13.8 12-7.94 8.25 10.25-5.94L13.8 12Z" />
+      <path fill="#00f076" d="m16.11 9.69 2.58 1.5c.57.33.57.87 0 1.2l-2.58 1.5L13.8 12l2.31-2.31Z" />
+    </svg>
+  );
+}
+
+function AppleIcon({ className }: { className: string }) {
+  return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden="true">
-      <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.4l2.583 1.496c.572.331.572.87 0 1.2l-2.583 1.497-2.606-2.597 2.606-2.596zM5.864 3.465L16.8 9.798l-2.302 2.302-8.634-8.635z" />
+      <path d="M17.05 12.54c-.02-2.08 1.7-3.08 1.78-3.13a3.83 3.83 0 0 0-3.02-1.63c-1.27-.13-2.5.76-3.15.76-.66 0-1.67-.74-2.74-.72a4.04 4.04 0 0 0-3.4 2.07c-1.46 2.54-.37 6.28 1.03 8.34.69 1.01 1.5 2.14 2.57 2.1 1.04-.04 1.43-.67 2.69-.67 1.25 0 1.61.67 2.7.65 1.12-.02 1.82-1.01 2.5-2.03a8.34 8.34 0 0 0 1.14-2.36 3.65 3.65 0 0 1-2.1-3.38ZM14.98 6.43a3.7 3.7 0 0 0 .85-2.66 3.76 3.76 0 0 0-2.44 1.26 3.53 3.53 0 0 0-.88 2.56 3.1 3.1 0 0 0 2.47-1.16Z" />
     </svg>
   );
 }
 
 function StoreIcon({ kind, compact }: { kind: StoreKind; compact: boolean }) {
   if (kind === 'appStore') {
-    return <Apple size={compact ? 20 : 32} className="flex-shrink-0" aria-hidden="true" />;
+    return <AppleIcon className={compact ? 'w-5 h-5 flex-shrink-0' : 'w-8 h-8 flex-shrink-0'} />;
   }
 
   return <GooglePlayIcon className={compact ? 'w-5 h-5 flex-shrink-0' : 'w-8 h-8 flex-shrink-0'} />;
